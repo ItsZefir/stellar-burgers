@@ -1,7 +1,7 @@
 import { loginUser, clearError } from '@/services/slices/authSlice';
 import { useDispatch, useSelector } from '@/services/store';
 import { LoginUI } from '@ui-pages';
-import { type SyntheticEvent, useState } from 'react';
+import { type SyntheticEvent, useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 export const Login = (): React.JSX.Element => {
@@ -13,6 +13,10 @@ export const Login = (): React.JSX.Element => {
   const location = useLocation();
 
   const error = useSelector((state) => state.auth.error);
+
+  useEffect(() => {
+    dispatch(clearError());
+  }, [dispatch]);
 
   const from =
     (location.state as { from?: { pathname?: string } })?.from?.pathname ?? '/';
