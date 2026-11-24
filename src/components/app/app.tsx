@@ -137,14 +137,16 @@ const RouteComponent = (): React.JSX.Element => {
               </Modal>
             }
           />
-          <Route
-            path="/profile/orders/:number"
-            element={
-              <Modal title={orderNumberTitle} onClose={() => void navigate(-1)}>
-                <OrderInfo />
-              </Modal>
-            }
-          />
+          <Route element={<ProtectedRoute />}>
+            <Route
+              path="/profile/orders/:number"
+              element={
+                <Modal title={orderNumberTitle} onClose={() => void navigate(-1)}>
+                  <OrderInfo />
+                </Modal>
+              }
+            />
+          </Route>
         </Routes>
       )}
     </>
